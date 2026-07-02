@@ -38,8 +38,7 @@ impl SyscallEntryAddress {
 /// Check if the CPU supports APIC.
 #[allow(dead_code)]
 pub fn has_apic() -> bool {
-    // SAFETY, CPUID leaf 1 is available on all AMD64 CPUs.
-    let cpuid = unsafe { core::arch::x86_64::__cpuid(1) };
+    let cpuid = core::arch::x86_64::__cpuid(1);
     (cpuid.edx & (1 << 9)) != 0
 }
 
